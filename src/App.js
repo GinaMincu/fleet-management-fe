@@ -1,14 +1,15 @@
-import './App.css';
-import API_URL from './config';
-import Vehicles from './pages/Vehicles/Vehicles';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import RoutesComp from "./RoutesComp"; // Ensure this matches your file name
+
+import Bar from "./pages/Bar";
 
 function App() {
-  
   return (
-    <div className="App">
-     <p>laaaaaaaaaa</p>
-     <Vehicles></Vehicles>
-    </div>
+    <BrowserRouter>
+      <Bar></Bar>
+      <RoutesComp />
+    </BrowserRouter>
   );
 }
 
