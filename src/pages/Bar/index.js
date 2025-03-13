@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-const Bar = (props) => {
+const Bar = () => {
   return (
     <Box
       position="sticky"

@@ -8,7 +8,7 @@ import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { Button, Stack } from "@mui/material";
 
-const Trips = (props) => {
+const Trips = () => {
   const location = useLocation();
   const [trips, setTrips] = useState(location.state?.vehicle.trips || null);
   const navigate = useNavigate();

@@ -28,7 +28,7 @@ const Dashboard = (props) => {
 
   return (
     <div style={{ padding: "10px 20px" }}>
-      <Vehicles vehicles={vehicles}></Vehicles>
+      <Vehicles vehicles={vehicles} setVehicles={setVehicles}></Vehicles>
     </div>
   );
 };
