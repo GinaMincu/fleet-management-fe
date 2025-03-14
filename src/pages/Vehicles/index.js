@@ -25,7 +25,7 @@ const Vehicles = ({ vehicles, setVehicles }) => {
       const success = await deleteVehicle(vehicleId);
       if (success) {
         const resp = await getVehicles();
-        setVehicles(resp.results);
+        setVehicles(resp);
       }
     } catch (error) {
       console.error("Failed to delete vehicle:", error);

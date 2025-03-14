@@ -43,7 +43,7 @@ const Modal = (props) => {
 
         onSubmit(resp);
         const respGetVehicles = await getVehicles();
-        setVehicles(respGetVehicles.results);
+        setVehicles(respGetVehicles);
       } catch (error) {
         console.error("Failed", error);
       }
@@ -59,7 +59,7 @@ const Modal = (props) => {
 
         onSubmit(resp);
         const respGetVehicles = await getVehicles();
-        setVehicles(respGetVehicles.results);
+        setVehicles(respGetVehicles);
       } catch (error) {
         console.error("Failed", error);
       }
