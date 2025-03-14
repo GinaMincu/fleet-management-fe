@@ -89,7 +89,7 @@ const Trips = () => {
           }}
           columns={columns}
           fixedHeader
-          data={trips}
+          data={trips.sort((a, b) => a.id - b.id)}
         />
       </Stack>
     </Stack>
