@@ -1,8 +1,18 @@
-import ModalContent from "./ModalContent";
+// import ModalContent from "./ModalContent";
 import "./index.scss";
+import CloseIcon from "@mui/icons-material/Close";
+import React from "react";
 
-const ElementsModal = (props) => {
-  const { isSaving, currentElem, onClose, onAddElement, onEditElement, setVehicles } = props;
+const ElementsModal = ({
+  isSaving,
+  currentElem,
+  onClose,
+  onAddElement,
+  onEditElement,
+  setVehicles,
+  children,
+}) => {
+
   const onSubmit = (element) => {
     if (currentElem) {
       onEditElement(element);
@@ -11,9 +21,17 @@ const ElementsModal = (props) => {
     }
   };
 
+  const handleOnClose = () => {
+    // resetInputData();
+    onClose();
+  };
+
   return (
     <div className="elements-modal">
-      <ModalContent onSubmit={onSubmit} onClose={onClose} isSaving={isSaving} elementToEdit={currentElem} setVehicles={setVehicles} />
+      <button className="exit-button-modal" onClick={handleOnClose}>
+        <CloseIcon size={20} />
+      </button>
+      {React.cloneElement(children, { onSubmit, isSaving })}
     </div>
   );
 };

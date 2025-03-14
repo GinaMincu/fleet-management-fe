@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { Stack, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
 import { deleteVehicle, getVehicles } from "../../services/fetch";
 import Modal from "../../components/Modal";
 import ElementsModal from "../../components/Modal/ElementsModal";
+import VehicleModalContent from "./VehicleModalContent";
 
 const Vehicles = ({ vehicles, setVehicles }) => {
   const navigate = useNavigate();
@@ -41,22 +41,22 @@ const Vehicles = ({ vehicles, setVehicles }) => {
     setElementToEdit(newVehicle);
 
     setIsSaving(true);
-    setTimeout(toggleModal, 1000);
+    setTimeout(toggleModal, 500);
   };
 
   const handleEditVehicle = (updatedVehicle) => {
     setElementToEdit(updatedVehicle);
 
     setIsSaving(true);
-    setTimeout(toggleModal, 1000);
+    setTimeout(toggleModal, 500);
   };
 
   const columns = [
-    {
-      name: <span className="font-weight-bold fs-13">Id</span>,
-      selector: (row) => row.id,
-      sortable: true,
-    },
+    // {
+    //   name: <span className="font-weight-bold fs-13">Id</span>,
+    //   selector: (row) => row.id,
+    //   sortable: true,
+    // },
     {
       name: <span className="font-weight-bold fs-13">Plate number</span>,
       selector: (row) => row.plate,
@@ -87,33 +87,29 @@ const Vehicles = ({ vehicles, setVehicles }) => {
       sortable: true,
     },
     {
-      name: <span className="font-weight-bold fs-13"></span>,
+      name: <span className="font-weight-bold fs-13">Actions</span>,
       cell: (cell) => {
         return (
+          <>
           <EditIcon
             onClick={() => handleEditVehicle(cell)}
             style={{ cursor: "pointer" }}
           >
             {" "}
           </EditIcon>
-        );
-      },
-      sortable: true,
-    },
-    {
-      name: <span className="font-weight-bold fs-13"></span>,
-      cell: (cell) => {
-        return (
+          
           <DeleteIcon
-            onClick={() => handleDeleteVehicle(cell.id)}
-            style={{ cursor: "pointer" }}
-          >
-            {" "}
-          </DeleteIcon>
+          onClick={() => handleDeleteVehicle(cell.id)}
+          style={{ cursor: "pointer",marginLeft:"20px" }}
+        >
+          {" "}
+        </DeleteIcon>
+        </>
         );
       },
       sortable: true,
     },
+
   ];
 
   return (
@@ -166,11 +162,12 @@ const Vehicles = ({ vehicles, setVehicles }) => {
             setIsModalOpen(false);
             setElementToEdit(undefined);
           }}
-          currentElem={elementToEdit}
           onAddElement={handleAddNewVehicle}
           onEditElement={handleEditVehicle}
-          setVehicles={setVehicles}
-        />
+          
+        >
+        <VehicleModalContent setVehicles={setVehicles} elementToEdit={elementToEdit}></VehicleModalContent>
+        </ElementsModal>
       </Modal>
     </Stack>
   );

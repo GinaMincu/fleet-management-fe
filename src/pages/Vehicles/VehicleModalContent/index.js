@@ -1,23 +1,17 @@
-// import { NoteType, getNoteTypeLabel } from "constants/NoteTypes";
 import { useEffect, useState } from "react";
-// import TextNoteInput from "../inputs/TextNoteInput";
-import { v4 as uuidv4 } from "uuid";
-// import { NoteElement, TextNote } from "typings/notes";
 import "./index.scss";
-import CloseIcon from "@mui/icons-material/Close";
-import { Stack, Typography, Button, Input } from "@mui/material";
+import { Stack } from "@mui/material";
 import {
   updateVehicle,
   getVehicles,
   addVehicle,
-} from "../../../../services/fetch";
+} from "../../../services/fetch";
 
 const Modal = (props) => {
-  // Unpack props for easy access
-  const { isSaving, onClose, onSubmit, elementToEdit, setVehicles } = props;
 
-  const [currentElementPlateNumber, setCurrentElementPlateNumber] =
-    useState("");
+  const { isSaving, onSubmit, elementToEdit, setVehicles } = props;
+
+  const [currentElementPlateNumber, setCurrentElementPlateNumber] = useState("");
   const [currentElementModel, setCurrentElementModel] = useState("");
   const [currentElementColor, setCurrentElementColor] = useState("");
 
@@ -34,20 +28,6 @@ const Modal = (props) => {
     setCurrentElementModel("");
     setCurrentElementColor("");
   };
-
-  // useEffect(() => {
-  //   if (!elementToEdit) {
-  //     // We reset the fields only when we are out of edit mode
-  //     switch (currentElementType) {
-  //       case {}:
-  //         setCurrentElementData(EMPTY_NOTE_DATA);
-  //         break;
-  //       default:
-  //         setCurrentElementData(undefined);
-  //         break;
-  //     }
-  //   }
-  // }, [elementToEdit, currentElementType]);
 
   const handleOnSubmit = async () => {
     if (elementToEdit) {
@@ -88,17 +68,8 @@ const Modal = (props) => {
     resetInputData();
   };
 
-  const handleOnClose = () => {
-    resetInputData();
-    onClose();
-  };
-
   return (
     <div>
-      <button className="exit-button-modal" onClick={handleOnClose}>
-        <CloseIcon size={20} />
-      </button>
-
       <div className="modal-content-main-div">
         {isSaving && <p>Saving...</p>}
 
@@ -117,8 +88,7 @@ const Modal = (props) => {
               setCurrentElementPlateNumber(element.target.value);
             }}
             value={currentElementPlateNumber}
-          >
-          </input>
+          ></input>
         </Stack>
 
         <Stack
@@ -136,8 +106,7 @@ const Modal = (props) => {
               setCurrentElementModel(element.target.value);
             }}
             value={currentElementModel}
-          >
-          </input>
+          ></input>
         </Stack>
 
         <Stack
@@ -155,9 +124,7 @@ const Modal = (props) => {
               setCurrentElementColor(element.target.value);
             }}
             value={currentElementColor}
-          >
-
-          </input>
+          ></input>
         </Stack>
 
         <button className="add-element-btn" onClick={handleOnSubmit}>

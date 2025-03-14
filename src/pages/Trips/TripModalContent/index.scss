@@ -1,0 +1,41 @@
+.modal-content-main-div {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 100px;
+  row-gap: 15px; 
+
+  .label{
+    font-weight: bold;
+  }
+  .input{
+    border-radius: 5px;
+    border: 1px solid #062c43;
+    height: 30px;
+    font-size: 15px;
+    width:250px
+  }
+
+  .add-element-btn {
+    margin-top: 40px;
+    padding: 8px;
+    font-weight: bold;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid var(--border-main);
+    transition: background-color 0.25s ease-in-out;
+    border-radius: 5px;
+    border-color: rgb(105, 12, 98);
+    background-color: rgb(105, 12, 98);
+    color: white;
+  }
+
+  .add-element-btn:hover {
+    background-color: rgb(16, 102, 13);
+    color: white;
+    border-color: rgb(16, 102, 13);
+  }
+
+}
