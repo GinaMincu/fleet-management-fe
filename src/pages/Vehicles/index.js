@@ -149,9 +149,10 @@ const Vehicles = ({ vehicles, setVehicles }) => {
 
       {vehicles && (
         <DataTable
+        // pagination
           columns={columns}
           fixedHeader
-          data={vehicles.sort((a, b) => a.id - b.id)}
+          data={vehicles?.sort((a, b) => a.id - b.id)}
         />
       )}
 

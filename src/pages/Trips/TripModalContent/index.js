@@ -62,17 +62,14 @@ const Modal = (props) => {
 
       try {
         const resp = await addTrip(newElement);
-
         onSubmit(resp);
         const respGetTrips = await getTrips();
-        setTrips(respGetTrips.results);
-
-        onSubmit(resp);
+        setTrips(respGetTrips);
+       
       } catch (error) {
         console.error("Failed", error);
       }
     }
-
     resetInputData();
   };
 

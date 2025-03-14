@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from "react";
 import API_URL from "../../config";
 import Vehicles from "../Vehicles";
+import { getVehicles } from "../../services/fetch";
 
 const Dashboard = (props) => {
   const [vehicles, setVehicles] = useState([]);
 
-  const getVehicles = async () => {
+  const fetchVehicles = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/vehicles/`, {
-        method: "GET",
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setVehicles(data.results);
+      const resp = await getVehicles();
+      //if pagination in DRF-django rest framework is deactivated-> resp is the array of results, otherwise 
+      //you get {"count": 7,"next": null,"previous": null,"results": [ {},{},{}..]}
+      setVehicles(resp);
     } catch (error) {
       console.error("Error during authentication:", error);
     }
   };
 
   useEffect(() => {
-    getVehicles();
+    fetchVehicles();
   }, []);
 
   return (

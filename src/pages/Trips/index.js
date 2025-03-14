@@ -95,6 +95,7 @@ const Trips = () => {
 
       <Stack sx={{ backgroundColor: "white", padding: "0px 20px" }}>
         <DataTable
+        // pagination
           customStyles={{
             headCells: {
               style: {
@@ -109,7 +110,7 @@ const Trips = () => {
           columns={columns}
           fixedHeader
           data={trips
-            ?.filter((trip) => trip.vehicle === location.state?.vehicle.id)
+            ?.filter((trip) => trip?.vehicle === location.state?.vehicle.id)
             ?.sort((a, b) => a.id - b.id)}
         />
       </Stack>
