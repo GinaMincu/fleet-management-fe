@@ -7,9 +7,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import DriveEtaIcon from "@mui/icons-material/DriveEta";
 import { deleteVehicle, getVehicles } from "../../services/fetch";
+import Modal from "../../components/Modal";
+import ElementsModal from "../../components/Modal/ElementsModal";
 
 const Vehicles = ({ vehicles, setVehicles }) => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [elementToEdit, setElementToEdit] = useState();
+  const [isSaving, setIsSaving] = useState(false);
 
   const viewVehicle = (vehicle) => {
     navigate(`/trips/${vehicle.id}`, { state: { vehicle } });
@@ -27,13 +32,23 @@ const Vehicles = ({ vehicles, setVehicles }) => {
     }
   };
 
-  const handleAddNewVehicle = () => {
-    console.log("add new vehicle");
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+    setIsSaving(false);
   };
 
-  const handleEditVehicle = (vehicle) => {
-    console.log("edited veh", vehicle);
-    // navigate(`/trips/${vehicle.id}`, { state: { vehicle } });
+  const handleAddNewVehicle = (newVehicle) => {
+    setElementToEdit(newVehicle);
+
+    setIsSaving(true);
+    setTimeout(toggleModal, 1000);
+  };
+
+  const handleEditVehicle = (updatedVehicle) => {
+    setElementToEdit(updatedVehicle);
+
+    setIsSaving(true);
+    setTimeout(toggleModal, 1000);
   };
 
   const columns = [
@@ -136,7 +151,27 @@ const Vehicles = ({ vehicles, setVehicles }) => {
         </Button>
       </Stack>
 
-      {vehicles && <DataTable columns={columns} fixedHeader data={vehicles} />}
+      {vehicles && (
+        <DataTable
+          columns={columns}
+          fixedHeader
+          data={vehicles.sort((a, b) => a.id - b.id)}
+        />
+      )}
+
+      <Modal isOpen={isModalOpen}>
+        <ElementsModal
+          isSaving={isSaving}
+          onClose={() => {
+            setIsModalOpen(false);
+            setElementToEdit(undefined);
+          }}
+          currentElem={elementToEdit}
+          onAddElement={handleAddNewVehicle}
+          onEditElement={handleEditVehicle}
+          setVehicles={setVehicles}
+        />
+      </Modal>
     </Stack>
   );
 };
