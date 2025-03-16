@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API_URL from "../../config";
+import { Stack } from "@mui/material";
 import Vehicles from "../Vehicles";
 import { getVehicles } from "../../services/fetch";
 
@@ -22,9 +22,9 @@ const Dashboard = (props) => {
   }, []);
 
   return (
-    <div style={{ padding: "10px 20px" }}>
+    <Stack sx={{ padding: "10px 20px" }}>
       <Vehicles vehicles={vehicles} setVehicles={setVehicles}></Vehicles>
-    </div>
+    </Stack>
   );
 };
 

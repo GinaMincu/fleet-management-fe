@@ -1,6 +1,7 @@
 // import ModalContent from "./ModalContent";
 import "./index.scss";
 import CloseIcon from "@mui/icons-material/Close";
+import { IconButton, Stack } from "@mui/material";
 import React from "react";
 
 const ElementsModal = ({
@@ -22,17 +23,16 @@ const ElementsModal = ({
   };
 
   const handleOnClose = () => {
-    // resetInputData();
     onClose();
   };
 
   return (
-    <div className="elements-modal">
-      <button className="exit-button-modal" onClick={handleOnClose}>
+    <Stack className="elements-modal">
+      <IconButton  onClick={handleOnClose} className="exit-button-modal">
         <CloseIcon size={20} />
-      </button>
+      </IconButton >
       {React.cloneElement(children, { onSubmit, isSaving })}
-    </div>
+    </Stack>
   );
 };
 

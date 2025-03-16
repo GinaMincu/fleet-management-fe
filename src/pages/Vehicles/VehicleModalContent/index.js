@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.scss";
-import { Stack } from "@mui/material";
+import { Stack, Button, Box } from "@mui/material";
 import {
   updateVehicle,
   getVehicles,
@@ -15,19 +15,22 @@ const Modal = (props) => {
   const [currentElementModel, setCurrentElementModel] = useState("");
   const [currentElementColor, setCurrentElementColor] = useState("");
 
-  useEffect(() => {
-    if (elementToEdit) {
-      setCurrentElementPlateNumber(elementToEdit.plate);
-      setCurrentElementModel(elementToEdit.model);
-      setCurrentElementColor(elementToEdit.color);
-    }
-  }, [elementToEdit]);
-
   const resetInputData = () => {
     setCurrentElementPlateNumber("");
     setCurrentElementModel("");
     setCurrentElementColor("");
   };
+
+  useEffect(() => {
+    if (elementToEdit) {
+      setCurrentElementPlateNumber(elementToEdit.plate);
+      setCurrentElementModel(elementToEdit.model);
+      setCurrentElementColor(elementToEdit.color);
+    }else{
+      resetInputData()
+    }
+  }, [elementToEdit]);
+
 
   const handleOnSubmit = async () => {
     if (elementToEdit) {
@@ -69,8 +72,7 @@ const Modal = (props) => {
   };
 
   return (
-    <div>
-      <div className="modal-content-main-div">
+      <Stack className="modal-content-main-div">
         {isSaving && <p>Saving...</p>}
 
         <Stack
@@ -127,15 +129,14 @@ const Modal = (props) => {
           ></input>
         </Stack>
 
-        <button className="add-element-btn" onClick={handleOnSubmit}>
+        <Button className="add-element-btn" onClick={handleOnSubmit}>
           {elementToEdit ? (
-            <span>Update Element</span>
+            <Box>Update Element</Box>
           ) : (
-            <span>Add Element</span>
+            <Box>Add Element</Box>
           )}
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Stack>
   );
 };
 

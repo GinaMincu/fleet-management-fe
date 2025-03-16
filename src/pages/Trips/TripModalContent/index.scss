@@ -6,6 +6,7 @@
   align-items: center;
   padding: 50px 100px;
   row-gap: 15px; 
+  width: 400px;
 
   .label{
     font-weight: bold;
@@ -15,12 +16,16 @@
     border: 1px solid #062c43;
     height: 30px;
     font-size: 15px;
-    width:250px
+    width: 300px;
+  }
+
+  .datetimepicker{
+    width: 300px;
   }
 
   .add-element-btn {
-    margin-top: 40px;
-    padding: 8px;
+    margin-top: 10px;
+    padding: 8px 10px;
     font-weight: bold;
     background-color: white;
     cursor: pointer;
